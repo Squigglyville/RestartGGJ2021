@@ -6,24 +6,55 @@ using UnityEngine.AI;
 public class GuardBehaviour : MonoBehaviour
 {
     public NavMeshAgent navAgent;
+    public List<NavPoint> pointPatrol;
+    public int pointPatrolIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        GoToRandomNavPoint();
+        GoToNextNavPoint();
+        pointPatrolIndex = 0;
     }
 
-    void GoToRandomNavPoint()
+    void GoToNextNavPoint()
     {
-        int randomNavPointIndex = Random.Range(0, References.navpoints.Count);
-        navAgent.destination = References.navpoints[randomNavPointIndex].transform.position;
+
+        navAgent.destination = pointPatrol[pointPatrolIndex].transform.position;
     }
+
+    /*
+    void ChasePlayer()
+    {
+     navAgent.destination = References.thePlayer.transform.position;
+     
+    }
+    */
+
     // Update is called once per frame
     void Update()
     {
         if (navAgent.remainingDistance < 1)
         {
-            GoToRandomNavPoint();
+            GoToNextNavPoint();
+            pointPatrolIndex += 1;
         }
+
+        if (pointPatrolIndex >= pointPatrol.Count)
+        {
+            pointPatrolIndex = 0;
+        }
+        
     }
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject theirGameObject = collision.gameObject;
+
+        if(theirGameObject.GetComponent<Player>() != null)
+        {
+            ChasePlayer();
+        }
+        
+    }
+    */
 }
