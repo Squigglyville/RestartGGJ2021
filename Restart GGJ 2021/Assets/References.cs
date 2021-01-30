@@ -5,4 +5,5 @@ using UnityEngine;
 public class References
 {
     public static List<NavPoint> navpoints = new List<NavPoint>();
+    
 }

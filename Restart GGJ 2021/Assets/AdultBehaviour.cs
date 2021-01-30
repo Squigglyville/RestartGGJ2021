@@ -22,6 +22,8 @@ public class AdultBehaviour : MonoBehaviour
     {
         int randomNavPointIndex = Random.Range(0, References.navpoints.Count);
         navAgent.destination = References.navpoints[randomNavPointIndex].transform.position;
+        Vector3 LookAtPosition = navAgent.transform.position;
+        transform.LookAt(LookAtPosition);
     }
 
     // Update is called once per frame
