@@ -38,4 +38,3 @@ public class PlayerMovement3D : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);
     }
 }
-    
